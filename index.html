@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list by yash</title>
+    <link rel="stylesheet" href="todo.css">
+
+</head>
+
+<body>
+
+    <h1 style="text-align: center;margin-bottom: 30px;"><img src="https://m.media-amazon.com/images/G/01/sell/images/icon-magic-sparkle-dark.svg" alt=""> Todo list
+    <img src="
+    https://m.media-amazon.com/images/G/01/sell/images/icon-magic-sparkle-dark.svg" alt=""> </h1>
+
+    <div class="input-btn">
+        <input type="text" name="" class="input-here" onkeydown="
+            if (event.key  === 'Enter') {
+                    inputTaker();
+                    }" placeholder="Type your Work">
+        <input class="js-date" onkeydown="
+            if (event.key  === 'Enter') {
+                   doWork();
+                    }" type="datetime-local">
+        <button onclick="inputTaker()" class="button-34" onkeydown="">Add Work</button>
+    </div>
+    <p id="yash1"></p>
+
+    <!-- <p id="your-works"> </p> -->
+    <div class="work"> </div>
+
+    <script>
+
+        const todoArray = [];
+
+        renderTodoList();
+
+        function renderTodoList() {
+
+            let todoListArray = '';
+
+            //for my personal only //
+
+            for (let index = 0; index <= (todoArray.length); index++) {
+
+                const getHereBaby = index;
+                document.getElementById('yash1').innerHTML = `
+                <img src="https://m.media-amazon.com/images/G/01/sell/images/icon-magic-sparkle-dark.svg" alt=""> You have total works to do : ` + `${getHereBaby} 
+                <img src="https://m.media-amazon.com/images/G/01/sell/images/icon-magic-sparkle-dark.svg" alt=""><hr><hr>`;
+            }
+
+            //My personal only above code
+
+            for (let i = 0; i < todoArray.length; i++) {
+                const todoObject = todoArray[i];
+
+
+                const { name, dueDate } = todoObject;
+
+                const htmlHere = `<div id='script-html'> <p id="your-works" > <li><span id='name-js-css'>  ${name} </li></span> <span id='date-css'><i> ${dueDate}</i></span> <button
+            onclick = "
+            todoArray.splice(${i},1);
+            renderTodoList();  " class ="button-31" > Delete </button>  </p> <br><br><br></div>`;
+                todoListArray += htmlHere;
+
+                document.querySelector('.work').style.color = 'darkblue';
+
+            }
+            document.querySelector('.work').innerHTML = todoListArray;
+
+        }
+
+        function inputTaker() {
+            const inputTakingHere = document.querySelector('.input-here');
+            const name = inputTakingHere.value;
+
+            const dateInputElement = document.querySelector('.js-date');
+            const dueDate = dateInputElement.value;
+
+            todoArray.push({
+                name: name,
+                dueDate: dueDate
+            });
+
+
+            console.log(todoArray);
+            inputTakingHere.value = '';
+
+            renderTodoList();
+        }
+    </script>
+</body>
+
+</html>
